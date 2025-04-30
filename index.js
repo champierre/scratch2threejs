@@ -11,7 +11,7 @@ class ThreeJSExtension {
                 {
                     opcode: 'addCube',
                     blockType: Scratch.BlockType.COMMAND,
-                    text: '立方体を追加 サイズ [SIZE] 色 [COLOR] 位置 X [X] Y [Y] Z [Z]',
+                    text: '立方体を追加 サイズ [SIZE] 色 [COLOR] 位置 X [X] Y [Y] Z [Z] 回転 X [RX] Y [RY] Z [RZ]',
                     arguments: {
                         SIZE: {
                             type: Scratch.ArgumentType.NUMBER,
@@ -32,6 +32,18 @@ class ThreeJSExtension {
                         Z: {
                             type: Scratch.ArgumentType.NUMBER,
                             defaultValue: 0
+                        },
+                        RX: {
+                            type: Scratch.ArgumentType.NUMBER,
+                            defaultValue: 0
+                        },
+                        RY: {
+                            type: Scratch.ArgumentType.NUMBER,
+                            defaultValue: 0
+                        },
+                        RZ: {
+                            type: Scratch.ArgumentType.NUMBER,
+                            defaultValue: 0
                         }
                     }
                 },
@@ -50,13 +62,16 @@ class ThreeJSExtension {
         const x = args.X;
         const y = args.Y;
         const z = args.Z;
+        const rx = args.RX;
+        const ry = args.RY;
+        const rz = args.RZ;
         
         // Three.jsのシーンに立方体を追加する処理
         const cube = {
             size: size,
             color: color,
             position: { x: x, y: y, z: z },
-            rotation: { x: 0, y: 0, z: 0 }
+            rotation: { x: rx, y: ry, z: rz }
         };
         
         this.cubes.push(cube);
